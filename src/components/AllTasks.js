@@ -7,7 +7,9 @@ import moment from "moment";
 
 function AllTasks(props) {
   const dispatch = useDispatch();
+  //fetch the list of tasks from the state
   const taskData = useSelector((state) => state.task);
+  //fetch the list of users from the state
   const userData = useSelector((state) => state.user);
 
   /**

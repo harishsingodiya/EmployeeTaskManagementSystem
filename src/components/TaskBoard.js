@@ -14,13 +14,11 @@ export default function TaskBoard() {
   const [profile, setProfile] = useState(
     location.state.profile ? location.state.profile : ""
   );
-  // Fetch the list of users when this component is mounted
+  // Fetch the list of users and tasks when this component is mounted
   useEffect(() => {
     const initialsLoad = async () => {
-      //document.getElementById("overlay").style.display = "block";
       await dispatch(fetchTasks());
       await dispatch(fetchUsers());
-      //document.getElementById("overlay").style.display = "none";
     };
     initialsLoad();
   });

@@ -13,7 +13,7 @@ function Tasks() {
   const dispatch = useDispatch();
   const [taskId, setTaskId] = useState(0);
 
-  // Fetch the list of tasks and users
+  // Fetch the list of tasks and users when this component is mounted
   useEffect(() => {
     const initialsLoad = async () => {
       await dispatch(fetchTasks());
@@ -22,6 +22,7 @@ function Tasks() {
     initialsLoad();
   });
 
+  //display edit task container when edit button clicked
   const handleEditButtonClick = (taskId) => {
     setTaskId(taskId);
     document.getElementById("pills-edit-tab").click();

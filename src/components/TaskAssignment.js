@@ -11,10 +11,11 @@ function TaskAssignment() {
   const userData = useSelector((state) => state.user);
   // Fetch all tasks from state
   const taskData = useSelector((state) => state.task);
-  const [selectedDesignation, setselectedDesignation] = useState(0);
 
+  const [selectedDesignation, setselectedDesignation] = useState(0);
   const [selectedTask, setSelectedTask] = useState(0);
 
+  //Assigns task to a particular user
   const assignTaskToUser = async (userId) => {
     if (selectedTask === 0) {
       toast.warn("Please select a task.");

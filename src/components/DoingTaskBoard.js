@@ -21,10 +21,9 @@ export default function DoingTaskBoard(props) {
     e.preventDefault();
   };
 
-  /** Handle items when dropping tasks one priority to another */
+  /** Handle items when dropping tasks one Task Board to another */
   const handleDrop = async (e) => {
     e.preventDefault();
-    console.log(e.target.id);
     var taskId = e.dataTransfer.getData("taskId", e.target.taskId);
     await dispatch(updateTaskSubmission(props.userId, taskId, 0));
     await dispatch(fetchUsers());
@@ -71,7 +70,7 @@ export default function DoingTaskBoard(props) {
                     {taskData &&
                       taskData.tasks &&
                       taskData.tasks.subTask
-                        .filter((subTask) => subTask.taskId == task.taskId)
+                        .filter((subTask) => subTask.taskId === task.taskId)
                         .map((filteredTask) => (
                           <p
                             key={filteredTask.subTaskId}
@@ -89,16 +88,10 @@ export default function DoingTaskBoard(props) {
                       {userData &&
                         userData.users &&
                         userData.users
-                          .filter(
-                            (user) =>
-                              !(
-                                user.taskAssignedId
-                                  .split(",")
-                                  .includes(task.taskId.toString()) &&
-                                user.taskComptetedId
-                                  .split(",")
-                                  .includes(task.taskId.toString())
-                              )
+                          .filter((user) =>
+                            user.taskInComptetedId
+                              .split(",")
+                              .includes(task.taskId.toString())
                           )
                           .map((taskUser) => (
                             <img

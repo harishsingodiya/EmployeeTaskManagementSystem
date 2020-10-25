@@ -21,7 +21,7 @@ export default function DoneTaskBoard(props) {
     e.preventDefault();
   };
 
-  /** Handle items when dropping tasks one priority to another */
+  /** Handle items when dropping tasks one Task Board to another */
   const handleDrop = async (e) => {
     e.preventDefault();
     var taskId = e.dataTransfer.getData("taskId", e.target.taskId);
@@ -70,10 +70,10 @@ export default function DoneTaskBoard(props) {
                     {taskData &&
                       taskData.tasks &&
                       taskData.tasks.subTask
-                        .filter((subTask) => subTask.taskId == task.taskId)
+                        .filter((subTask) => subTask.taskId === task.taskId)
                         .map((filteredTask) => (
                           <p
-                            key={filteredTask.subTaskId+1}
+                            key={filteredTask.subTaskId + 1}
                             className="card-text pl-4"
                           >
                             {filteredTask.name}

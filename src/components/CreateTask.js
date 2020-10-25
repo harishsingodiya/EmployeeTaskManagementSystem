@@ -7,15 +7,17 @@ import { fetchTasks, createTask } from "../store";
 
 function CreateTask(props) {
   const dispatch = useDispatch();
+
   const [mainTask, setMainTask] = useState({
     taskName: "",
     workingHours: "",
-    dueDate: moment().format("YYYY-MM-DD")
+    dueDate: moment().format("YYYY-MM-DD"),
   });
 
   const [subTask, setSubTask] = useState({ taskName: "", dueDate: "" });
   const [allSubTask, setAllSubTask] = useState([]);
 
+  //Adds Sub Task to the Sub Task list
   const handleAddSubTask = () => {
     if (subTask.taskName) {
       setAllSubTask((allSubTask) => [...allSubTask, subTask]);
@@ -25,12 +27,14 @@ function CreateTask(props) {
     }
   };
 
+  //Removes the Sub Task from the Sub Task list
   const handleRemoveSubTask = (index) => {
     const newArry = [...allSubTask];
     newArry.splice(index, 1);
     setAllSubTask(newArry);
   };
 
+  //Creates new Task
   const handleCreateTask = async () => {
     if (!mainTask.taskName && !mainTask.workingHours && !mainTask.dueDate) {
       toast.warn("Mandatory fields are required to fill.");
@@ -55,7 +59,7 @@ function CreateTask(props) {
               onChange={(e) =>
                 setMainTask({
                   ...mainTask,
-                  taskName: e.target.value
+                  taskName: e.target.value,
                 })
               }
             />
@@ -73,7 +77,7 @@ function CreateTask(props) {
                 onChange={(e) =>
                   setSubTask({
                     ...subTask,
-                    taskName: e.target.value
+                    taskName: e.target.value,
                   })
                 }
               />
@@ -100,7 +104,7 @@ function CreateTask(props) {
               onChange={(e) =>
                 setMainTask({
                   ...mainTask,
-                  workingHours: e.target.value
+                  workingHours: e.target.value,
                 })
               }
             />
@@ -115,7 +119,7 @@ function CreateTask(props) {
               onChange={(e) =>
                 setMainTask({
                   ...mainTask,
-                  dueDate: e.target.value
+                  dueDate: e.target.value,
                 })
               }
             />

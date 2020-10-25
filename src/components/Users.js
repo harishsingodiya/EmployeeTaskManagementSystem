@@ -15,6 +15,7 @@ function Users() {
   const [showEditUserModal, setShowEditUserModal] = useState(false);
   const [editingUserDetails, setEditingUserDetails] = useState([]);
 
+  //Display edit user modal when edit button clicked
   const handleEditButtonClick = (userDetails) => {
     setEditingUserDetails(userDetails);
     setShowEditUserModal(true);

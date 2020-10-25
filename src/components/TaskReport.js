@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
-
 import { HorizontalBar } from "react-chartjs-2";
 
 function TaskReport({ userId, title, profile }) {
+  //fetch users list from state
   const userData = useSelector((state) => state.user);
 
   const [graphDataSet, setGraphDataSet] = useState({});
@@ -22,7 +22,7 @@ function TaskReport({ userId, title, profile }) {
         selectedUser.tot_tasks,
         selectedUser.completed_tasks,
         selectedUser.tot_tasks - selectedUser.completed_tasks,
-        ""
+        "",
       ];
       setGraphDataSet({
         labels: ["Total Task Assigned", "Completed Tasks", "Ongoing Tasks"],
@@ -34,32 +34,32 @@ function TaskReport({ userId, title, profile }) {
             barThickness: 30,
             maxBarThickness: 50,
             minBarLength: 2,
-            data: graphData
-          }
-        ]
+            data: graphData,
+          },
+        ],
       });
       setgraphDataOptions({
         legend: { display: false },
         title: {
           display: true,
-          text: "Task Report of " + selectedUser.name
+          text: "Task Report of " + selectedUser.name,
         },
         scales: {
           xAxes: [
             {
               ticks: {
-                beginAtZero: true
-              }
-            }
+                beginAtZero: true,
+              },
+            },
           ],
           yAxes: [
             {
               ticks: {
-                beginAtZero: true
-              }
-            }
-          ]
-        }
+                beginAtZero: true,
+              },
+            },
+          ],
+        },
       });
 
       setSelectedUser(selectedUser);

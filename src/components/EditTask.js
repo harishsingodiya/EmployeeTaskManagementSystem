@@ -11,16 +11,17 @@ function EditTask(props) {
   const [mainTask, setMainTask] = useState({
     taskName: "",
     workingHours: "",
-    dueDate: ""
+    dueDate: "",
   });
   const [subTask, setSubTask] = useState({
     subTaskId: 0,
     taskName: "",
     dueDate: "",
-    status: 1
+    status: 1,
   });
   const [allSubTask, setAllSubTask] = useState([]);
 
+  //Provides task information to be updated
   useEffect(() => {
     setAllSubTask([]);
     if (taskData && taskData.tasks && taskData.tasks.mainTask) {
@@ -30,7 +31,7 @@ function EditTask(props) {
           setMainTask({
             taskName: selectedMainTask.name,
             workingHours: selectedMainTask.working_hours,
-            dueDate: selectedMainTask.due_date
+            dueDate: selectedMainTask.due_date,
           });
         });
 
@@ -43,13 +44,14 @@ function EditTask(props) {
               subTaskId: selectedSubTask.subTaskId,
               taskName: selectedSubTask.name,
               dueDate: "",
-              status: 1
-            }
+              status: 1,
+            },
           ]);
         });
     }
   }, [props.taskId, taskData, setAllSubTask, setMainTask]);
 
+  //handle adding sub tasks to the Sub Task list
   const handleAddSubTask = () => {
     if (subTask.taskName) {
       setAllSubTask((allSubTask) => [...allSubTask, subTask]);
@@ -58,13 +60,16 @@ function EditTask(props) {
       toast.warn("Please provide sub task name.");
     }
   };
-
+  //Handle removing tasks form the Sub Task list
   const handleRemoveSubTask = (index) => {
     const newArry = [...allSubTask];
     newArry[index].status = 0;
     setAllSubTask(newArry);
   };
 
+  /**
+   * Handle updating of a task from the Edit Task container.
+   */
   const handleUpdateTask = async () => {
     if (!mainTask.taskName && !mainTask.workingHours && !mainTask.dueDate) {
       toast.warn("Mandatory fields are required to fill.");
@@ -89,7 +94,7 @@ function EditTask(props) {
               onChange={(e) =>
                 setMainTask({
                   ...mainTask,
-                  taskName: e.target.value
+                  taskName: e.target.value,
                 })
               }
             />
@@ -107,7 +112,7 @@ function EditTask(props) {
                 onChange={(e) =>
                   setSubTask({
                     ...subTask,
-                    taskName: e.target.value
+                    taskName: e.target.value,
                   })
                 }
               />
@@ -134,7 +139,7 @@ function EditTask(props) {
               onChange={(e) =>
                 setMainTask({
                   ...mainTask,
-                  workingHours: e.target.value
+                  workingHours: e.target.value,
                 })
               }
             />
@@ -149,7 +154,7 @@ function EditTask(props) {
               onChange={(e) =>
                 setMainTask({
                   ...mainTask,
-                  dueDate: e.target.value
+                  dueDate: e.target.value,
                 })
               }
             />

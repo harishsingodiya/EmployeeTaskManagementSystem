@@ -3,22 +3,25 @@ import { TASK_REQUEST, TASK_SUCCESS, TASK_ERROR } from "./taskType";
 
 export const fetchTasksRequest = () => {
   return {
-    type: TASK_REQUEST
+    type: TASK_REQUEST,
   };
 };
 const fetchTasksSuccess = (tasks) => {
   return {
     type: TASK_SUCCESS,
-    payload: tasks
+    payload: tasks,
   };
 };
 const fetchTasksFailure = (error) => {
   return {
     type: TASK_ERROR,
-    payload: error
+    payload: error,
   };
 };
 
+/**
+ * Action to fetch tasks
+ */
 export const fetchTasks = () => {
   return async (dispatch) => {
     dispatch(fetchTasksRequest);
@@ -34,17 +37,19 @@ export const fetchTasks = () => {
   };
 };
 
+/**
+ * Action to create new task
+ */
 export const createTask = (mainTask, subTasks) => {
   return async (dispatch) => {
     dispatch(fetchTasksRequest);
     await axios
       .post("http://localhost:5000/tasks/create_task", {
         mainTask: mainTask,
-        subTask: subTasks
+        subTask: subTasks,
       })
       .then((res) => {
-        // const tasks = res.data.tasks;
-        //dispatch(fetchTasksSuccess(tasks));
+        //console.log(res.data);
       })
       .catch((error) => {
         dispatch(fetchTasksFailure(error.message));
@@ -52,14 +57,17 @@ export const createTask = (mainTask, subTasks) => {
   };
 };
 
+/**
+ *
+ * Action to delete a task
+ */
 export const deleteTask = (taskId) => {
   return async (dispatch) => {
     dispatch(fetchTasksRequest);
     await axios
       .post("http://localhost:5000/tasks/delete_task", { taskId: taskId })
       .then((res) => {
-        //const tasks = res.data.tasks;
-        //dispatch(fetchTasksSuccess(tasks));
+        //console.log(res.data);
       })
       .catch((error) => {
         dispatch(fetchTasksFailure(error.message));
@@ -67,6 +75,9 @@ export const deleteTask = (taskId) => {
   };
 };
 
+/***
+ * Action to update task
+ */
 export const updateTask = (taskId, mainTask, subTasks) => {
   return async (dispatch) => {
     dispatch(fetchTasksRequest);
@@ -74,11 +85,10 @@ export const updateTask = (taskId, mainTask, subTasks) => {
       .post("http://localhost:5000/tasks/update_task", {
         taskId: taskId,
         mainTask: mainTask,
-        subTask: subTasks
+        subTask: subTasks,
       })
       .then((res) => {
-        //const tasks = res.data.tasks;
-        //dispatch(fetchTasksSuccess(tasks));
+        //console.log(res.data)
       })
       .catch((error) => {
         dispatch(fetchTasksFailure(error.message));
@@ -86,23 +96,30 @@ export const updateTask = (taskId, mainTask, subTasks) => {
   };
 };
 
+/***
+ * Action to assign task to particular user
+ */
+
 export const assignTask = (taskId, userId) => {
   return async (dispatch) => {
     dispatch(fetchTasksRequest);
     await axios
       .post("http://localhost:5000/tasks/assign_task", {
         taskId: taskId,
-        userId: userId
+        userId: userId,
       })
       .then((res) => {
-        //const tasks = res.data.tasks;
-        //dispatch(fetchTasksSuccess(tasks));
+        //console.log(res.data)
       })
       .catch((error) => {
         dispatch(fetchTasksFailure(error.message));
       });
   };
 };
+
+/**
+ * Action to update task status
+ */
 
 export const updateTaskSubmission = (userId, taskId, status) => {
   return async (dispatch) => {
@@ -111,11 +128,10 @@ export const updateTaskSubmission = (userId, taskId, status) => {
       .post("http://localhost:5000/tasks/submit_task", {
         taskId: taskId,
         userId: userId,
-        status: status
+        status: status,
       })
       .then((res) => {
-        //const tasks = res.data.tasks;
-        //dispatch(fetchTasksSuccess(tasks));
+        //console.log(res.data);
       })
       .catch((error) => {
         dispatch(fetchTasksFailure(error.message));
