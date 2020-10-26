@@ -97,7 +97,6 @@ return runSqlQueryAsync(createDbQuery)
       name varchar(100) NOT NULL,
       designation varchar(100) NOT NULL,
       working_hours varchar(11) NOT NULL,
-      profile_pic varchar(500) NOT NULL,
       created_on datetime NOT NULL DEFAULT current_timestamp(),
       status int(11) NOT NULL DEFAULT 1
     ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
