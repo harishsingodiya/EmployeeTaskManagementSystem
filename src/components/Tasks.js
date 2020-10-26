@@ -12,6 +12,10 @@ import { fetchTasks, fetchUsers } from "../store";
 function Tasks() {
   const dispatch = useDispatch();
   const [taskId, setTaskId] = useState(0);
+  // This value is used as key to force rerender Task component
+  const [createTaskComponentKey, setCreateTaskComponentKey] = useState(
+    performance.now()
+  );
 
   // Fetch the list of tasks and users when this component is mounted
   useEffect(() => {
@@ -31,6 +35,7 @@ function Tasks() {
   //display all task container when Create task button clicked
   const handleCreateTaskButtonClick = () => {
     document.getElementById("pills-task-tab").click();
+    setCreateTaskComponentKey(performance.now());
   };
 
   return (
@@ -104,7 +109,10 @@ function Tasks() {
                       role="tabpanel"
                       aria-labelledby="pills-task-tab"
                     >
-                      <AllTasks handleEditButtonClick={handleEditButtonClick} />
+                      <AllTasks
+                        key={createTaskComponentKey}
+                        handleEditButtonClick={handleEditButtonClick}
+                      />
                     </div>
                     <div
                       className="tab-pane fade"
