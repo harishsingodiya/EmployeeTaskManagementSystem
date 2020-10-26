@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import moment from "moment";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { fetchTasks, createTask } from "../store";
+import { fetchTasks, fetchUsers, createTask } from "../store";
 
 function CreateTask(props) {
   const dispatch = useDispatch();
@@ -11,7 +11,7 @@ function CreateTask(props) {
   const [mainTask, setMainTask] = useState({
     taskName: "",
     workingHours: "",
-    dueDate: moment().format("YYYY-MM-DD"),
+    dueDate: moment().format("YYYY-MM-DD")
   });
 
   const [subTask, setSubTask] = useState({ taskName: "", dueDate: "" });
@@ -42,7 +42,15 @@ function CreateTask(props) {
     }
     await dispatch(createTask(mainTask, allSubTask));
     await dispatch(fetchTasks());
+    await dispatch(fetchUsers());
     toast.success("Task successfull created.");
+    props.handleCreateTaskButtonClick();
+    setAllSubTask([]);
+    setMainTask({
+      taskName: "",
+      workingHours: "",
+      dueDate: moment().format("YYYY-MM-DD")
+    });
   };
 
   return (
@@ -59,7 +67,7 @@ function CreateTask(props) {
               onChange={(e) =>
                 setMainTask({
                   ...mainTask,
-                  taskName: e.target.value,
+                  taskName: e.target.value
                 })
               }
             />
@@ -77,7 +85,7 @@ function CreateTask(props) {
                 onChange={(e) =>
                   setSubTask({
                     ...subTask,
-                    taskName: e.target.value,
+                    taskName: e.target.value
                   })
                 }
               />
@@ -104,7 +112,7 @@ function CreateTask(props) {
               onChange={(e) =>
                 setMainTask({
                   ...mainTask,
-                  workingHours: e.target.value,
+                  workingHours: e.target.value
                 })
               }
             />
@@ -119,7 +127,7 @@ function CreateTask(props) {
               onChange={(e) =>
                 setMainTask({
                   ...mainTask,
-                  dueDate: e.target.value,
+                  dueDate: e.target.value
                 })
               }
             />

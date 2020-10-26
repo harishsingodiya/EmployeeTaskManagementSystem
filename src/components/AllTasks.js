@@ -23,9 +23,9 @@ function AllTasks(props) {
   };
 
   const getSubTaskViews = useCallback(
-    (task) => {
+    (taskId) => {
       return taskData.tasks.subTask.map((subtask) =>
-        task.taskId === subtask.taskId ? (
+        taskId === subtask.taskId ? (
           <h6 key={subtask.subTaskId} className="card-title w-auto">
             {subtask.name}
           </h6>
@@ -84,7 +84,7 @@ function AllTasks(props) {
                     </div>
                   </div>
                 </div>
-                <div className="card-body">{getSubTaskViews(task)}</div>
+                <div className="card-body">{getSubTaskViews(task.taskId)}</div>
                 <div className="d-flex p-2 align-items-end">
                   <small className="text-muted">
                     <b>Due Date: {moment(task.due_date).format("LL")}</b>

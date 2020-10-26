@@ -28,6 +28,11 @@ function Tasks() {
     document.getElementById("pills-edit-tab").click();
   };
 
+  //display all task container when Create task button clicked
+  const handleCreateTaskButtonClick = () => {
+    document.getElementById("pills-task-tab").click();
+  };
+
   return (
     <div className="container-fluid">
       <div className="row p-2">
@@ -115,7 +120,12 @@ function Tasks() {
                       role="tabpanel"
                       aria-labelledby="pills-assign-tab"
                     >
-                      <EditTask taskId={taskId} />
+                      <EditTask
+                        taskId={taskId}
+                        handleCreateTaskButtonClick={
+                          handleCreateTaskButtonClick
+                        }
+                      />
                     </div>
 
                     <div
@@ -124,7 +134,11 @@ function Tasks() {
                       role="tabpanel"
                       aria-labelledby="pills-task-tab"
                     >
-                      <CreateTask />
+                      <CreateTask
+                        handleCreateTaskButtonClick={
+                          handleCreateTaskButtonClick
+                        }
+                      />
                     </div>
                   </div>
                 </div>
