@@ -27,7 +27,11 @@ function TaskAssignment() {
     await dispatch(fetchUsers());
   };
 
-  return (
+  return taskData && taskData.tasks.mainTask == "" ? (
+    <span>
+      <h5>There are no tasks, please create task.</h5>
+    </span>
+  ) : (
     <div>
       <div className="row">
         <div className="col-sm-4">
@@ -67,43 +71,47 @@ function TaskAssignment() {
         </div>
       </div>
       <div className="row">
-        <div className="col-sm-12">
-          <table className="table table-card">
-            <thead>
-              <tr>
-                <th>S.N</th>
-                <th>Name</th>
-                <th>Desgnation</th>
-                <th>Action</th>
-              </tr>
-            </thead>
-            <tbody>
-              {userData &&
-                userData.users &&
-                userData.users.map((user, index) =>
-                  selectedDesignation == 0 ||
-                  user.designation === selectedDesignation ? (
-                    <tr key={index}>
-                      <td>{index + 1}</td>
-                      <td>{user.name}</td>
-                      <td>{user.designation}</td>
-                      <td>
-                        <button
-                          type="button"
-                          className="btn btn-success btn-sm mr-1"
-                          onClick={() => assignTaskToUser(user.userId)}
-                        >
-                          Assign
-                        </button>
-                      </td>
-                    </tr>
-                  ) : (
-                    ""
-                  )
-                )}
-            </tbody>
-          </table>
-        </div>
+        {userData && !userData.users.length ? (
+          <h5>There are no users, please add users.</h5>
+        ) : (
+          <div className="col-sm-12">
+            <table className="table table-card">
+              <thead>
+                <tr>
+                  <th>S.N</th>
+                  <th>Name</th>
+                  <th>Desgnation</th>
+                  <th>Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {userData &&
+                  userData.users &&
+                  userData.users.map((user, index) =>
+                    selectedDesignation == 0 ||
+                    user.designation === selectedDesignation ? (
+                      <tr key={index}>
+                        <td>{index + 1}</td>
+                        <td>{user.name}</td>
+                        <td>{user.designation}</td>
+                        <td>
+                          <button
+                            type="button"
+                            className="btn btn-success btn-sm mr-1"
+                            onClick={() => assignTaskToUser(user.userId)}
+                          >
+                            Assign
+                          </button>
+                        </td>
+                      </tr>
+                    ) : (
+                      ""
+                    )
+                  )}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
       <ToastContainer />
     </div>

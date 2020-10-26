@@ -22,7 +22,7 @@ export default function AllUsers(props) {
 
   return (
     <div className="text-left">
-      {userData && !userData.users ? (
+      {userData && !userData.users.length ? (
         <h5>There are no users, please add users.</h5>
       ) : (
         <div className="container-fluid">

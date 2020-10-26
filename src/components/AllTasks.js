@@ -40,9 +40,7 @@ function AllTasks(props) {
   return (
     <div>
       <div className="row  p-2">
-        {!taskData &&
-        !taskData.tasks.mainTask &&
-        !taskData.tasks.mainTask.length ? (
+        {taskData && taskData.tasks.mainTask == "" ? (
           <span>
             <h5>There are no tasks, please create task.</h5>
           </span>
