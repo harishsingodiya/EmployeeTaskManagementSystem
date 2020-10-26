@@ -72,8 +72,7 @@ export default function AllUsers(props) {
                             history.push({
                               pathname: "/task-board",
                               state: {
-                                userId: user.userId,
-                                profile: user.profile_pic
+                                userId: user.userId
                               }
                             })
                           }
@@ -85,11 +84,7 @@ export default function AllUsers(props) {
 
                     <span>
                       <img
-                        src={
-                          user.profile_pic
-                            ? user.profile_pic
-                            : "./profiles/user-img.png"
-                        }
+                        src="./profiles/user-img.png"
                         style={{ width: "18rem", height: "250px" }}
                         alt="Cinque Terre"
                       ></img>

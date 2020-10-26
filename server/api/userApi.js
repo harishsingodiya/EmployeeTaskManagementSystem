@@ -1,19 +1,6 @@
 var express = require("express");
-var multer = require("multer");
-const path = require("path");
-const appRoot = path.resolve(path.join(__dirname, "../../"));
 var router = express.Router();
 var pool = require("../db").pool;
-
-var storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, path.resolve(appRoot + "/public/profiles/"));
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + file.originalname);
-  }
-});
-var upload = multer({ storage: storage });
 
 function runSqlQueryAsyncSelect(query, params) {
   return new Promise((resolve, reject) => {
@@ -91,17 +78,11 @@ router.post("/users", (req, res) => {
   });
 });
 
-router.post("/add_user", upload.any(), (req, res) => {
+router.post("/add_user", (req, res) => {
   var params = req.body;
-  var filepath = "";
-  if (req.files.length > 0) {
-    var file = req.files[0];
-    filepath = "./public/profiles/" + file.filename;
-  }
-
   return runSqlQueryAsyncInsert(
-    "INSERT INTO users (name, designation, working_hours, profile_pic, status) values(?,?,?,?,1)",
-    [params.name, params.designation, params.wokingHours, filepath]
+    "INSERT INTO users (name, designation, working_hours, status) values(?,?,?,1)",
+    [params.name, params.designation, params.wokingHours]
   ).then((result) => {
     res.send(result.insertId.toString());
   });

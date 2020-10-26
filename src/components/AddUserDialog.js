@@ -12,11 +12,11 @@ function AddUser(props) {
     wokingHours: ""
   });
 
-  const handleUploadFile = (e) => {
+  /*  const handleUploadFile = (e) => {
     document.getElementById("filename").innerHTML = e.target.value
       .split("\\")
       .pop();
-  };
+  }; */
 
   /**
    * Create a new user with provided parameters
@@ -30,16 +30,16 @@ function AddUser(props) {
       toast.warn("Mandatory fields can not be empty.");
       return false;
     }
-    var userData = new FormData();
+    /*  var userData = new FormData();
     var fileInput = document.getElementById("uploadfile-input");
     var file = fileInput.files[0];
 
     userData.append("profilePic", file);
     userData.append("name", userDetail.name);
     userData.append("designation", userDetail.designation);
-    userData.append("wokingHours", userDetail.wokingHours);
+    userData.append("wokingHours", userDetail.wokingHours); */
 
-    await dispatch(addUser(userData));
+    await dispatch(addUser(userDetail));
     props.onClose();
     toast.success("User successfully created.");
     await dispatch(fetchUsers());
@@ -111,7 +111,7 @@ function AddUser(props) {
                 }
               />
             </div>
-            <div className="form-group text-left">
+            {/*    <div className="form-group text-left">
               <label>Profile Picture</label>
               <div className="input-group">
                 <div className="custom-file">
@@ -128,7 +128,7 @@ function AddUser(props) {
                   </label>
                 </div>
               </div>
-            </div>
+            </div> */}
 
             <div className="modal-footer">
               <button

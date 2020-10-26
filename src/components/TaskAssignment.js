@@ -95,13 +95,20 @@ function TaskAssignment() {
                         <td>{user.name}</td>
                         <td>{user.designation}</td>
                         <td>
-                          <button
-                            type="button"
-                            className="btn btn-success btn-sm mr-1"
-                            onClick={() => assignTaskToUser(user.userId)}
-                          >
-                            Assign
-                          </button>
+                          {selectedTask &&
+                          user.taskAssignedId
+                            .split(",")
+                            .includes(selectedTask.toString()) ? (
+                            <h6>Assigned</h6>
+                          ) : (
+                            <button
+                              type="button"
+                              className="btn btn-success btn-sm mr-1"
+                              onClick={() => assignTaskToUser(user.userId)}
+                            >
+                              Assign
+                            </button>
+                          )}
                         </td>
                       </tr>
                     ) : (

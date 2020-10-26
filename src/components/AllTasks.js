@@ -103,11 +103,7 @@ function AllTasks(props) {
                         .map((filteredUser) => (
                           <img
                             key={filteredUser.userId}
-                            src={
-                              filteredUser.profile_pic
-                                ? filteredUser.profile_pic
-                                : "./profiles/user-img.png"
-                            }
+                            src="./profiles/user-img.png"
                             className="rounded-circle border mr-1"
                             style={{ width: "40px", height: "40px" }}
                             alt="Cinque Terre"

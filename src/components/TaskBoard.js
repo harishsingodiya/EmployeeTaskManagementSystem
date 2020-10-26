@@ -11,9 +11,7 @@ export default function TaskBoard() {
   const [userId, setUserId] = useState(
     location.state.userId ? location.state.userId : 0
   );
-  const [profile, setProfile] = useState(
-    location.state.profile ? location.state.profile : ""
-  );
+
   // Fetch the list of users and tasks when this component is mounted
   useEffect(() => {
     const initialsLoad = async () => {
@@ -36,9 +34,9 @@ export default function TaskBoard() {
         </div>
 
         <div className="col-sm-12 d-flex  p-2">
-          <DoingTaskBoard title="Doing" userId={userId} profile={profile} />
-          <DoneTaskBoard title="Done" userId={userId} profile={profile} />
-          <TaskReport title="Task Report" userId={userId} profile={profile} />
+          <DoingTaskBoard title="Doing" userId={userId} />
+          <DoneTaskBoard title="Done" userId={userId} />
+          <TaskReport title="Task Report" userId={userId} />
         </div>
       </div>
     </div>

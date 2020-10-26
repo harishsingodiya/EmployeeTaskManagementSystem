@@ -22,7 +22,7 @@ function TaskReport({ userId, title, profile }) {
         selectedUser.tot_tasks,
         selectedUser.completed_tasks,
         selectedUser.tot_tasks - selectedUser.completed_tasks,
-        "",
+        ""
       ];
       setGraphDataSet({
         labels: ["Total Task Assigned", "Completed Tasks", "Ongoing Tasks"],
@@ -34,32 +34,32 @@ function TaskReport({ userId, title, profile }) {
             barThickness: 30,
             maxBarThickness: 50,
             minBarLength: 2,
-            data: graphData,
-          },
-        ],
+            data: graphData
+          }
+        ]
       });
       setgraphDataOptions({
         legend: { display: false },
         title: {
           display: true,
-          text: "Task Report of " + selectedUser.name,
+          text: "Task Report of " + selectedUser.name
         },
         scales: {
           xAxes: [
             {
               ticks: {
-                beginAtZero: true,
-              },
-            },
+                beginAtZero: true
+              }
+            }
           ],
           yAxes: [
             {
               ticks: {
-                beginAtZero: true,
-              },
-            },
-          ],
-        },
+                beginAtZero: true
+              }
+            }
+          ]
+        }
       });
 
       setSelectedUser(selectedUser);
@@ -72,7 +72,7 @@ function TaskReport({ userId, title, profile }) {
         <h5>{title}</h5>
         <i className="flex flex-fill" />
         <img
-          src={profile ? profile : "./profiles/user-img.png"}
+          src="./profiles/user-img.png"
           className="rounded-circle border mr-1"
           style={{ width: "40px", height: "40px" }}
           alt="profile"

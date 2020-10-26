@@ -36,7 +36,7 @@ export default function DoingTaskBoard(props) {
         <h5>{props.title}</h5>
         <i className="flex flex-fill" />
         <img
-          src={props.profile ? props.profile : "./profiles/user-img.png"}
+          src="./profiles/user-img.png"
           className="rounded-circle border mr-1"
           style={{ width: "40px", height: "40px" }}
           alt="profile-image1"
@@ -96,11 +96,7 @@ export default function DoingTaskBoard(props) {
                           .map((taskUser) => (
                             <img
                               key={taskUser.userId}
-                              src={
-                                taskUser.profile_pic
-                                  ? taskUser.profile_pic
-                                  : "./profiles/user-img.png"
-                              }
+                              src="./profiles/user-img.png"
                               className="rounded-circle border mr-1"
                               style={{ width: "40px", height: "40px" }}
                               alt="profil"
